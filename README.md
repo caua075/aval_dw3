@@ -35,17 +35,19 @@ Este é um projeto simples de simulação de banco utilizando apenas uma tabela 
 
    ```bash
    git clone https://github.com/caua075/aval_dw3.git
+
+2. Navegue até o diret´rio do projeto:
+   ```bash
    cd ProjetoBanco
 
-1. Este é um comentário em Markdown
+3. Instale as dependências de back-end e front-end: 
    ```bash
    cd backend
    npm install
-
-2. Para o front-end (Nunjucks)
-   ```bash
    cd ../frontend
    npm install
+
+## Rodando os Servidores
 
 ### Rodando o Back-end (e servindo o Front-end)
  - Após a instalação das dependências, inicie o servidor no diretório backend:
