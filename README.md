@@ -1,1 +1,28 @@
-# aval_dw3
+# Projeto Banco
+
+Este é um projeto simples de simulação de banco utilizando apenas uma tabela chamada **`conta`**. O sistema foi desenvolvido utilizando **JavaScript** tanto no **back-end** quanto no **front-end**. O objetivo é fornecer uma plataforma simples para gerenciar informações bancárias, como saldo, transferências e exibição de contas.
+
+## Tecnologias Utilizadas
+
+- **Back-end**: Node.js (com Express)
+- **Front-end**: HTML, CSS, JavaScript
+- **Banco de Dados**: Simulado (sem banco real, dados mantidos na memória)
+
+## Estrutura do Projeto
+/ProjetoBanco │ ├── /backend # Código do servidor (Node.js + Express) │ ├── server.js # Arquivo principal do servidor │ ├── routes.js # Roteamento da API │ └── data.js # Armazenamento de dados (simulado) │ ├── /frontend # Arquivos do front-end (HTML, CSS, JS) │ ├── index.html # Interface do usuário │ ├── style.css # Estilos da página │ └── script.js # Lógica de interação com a API │ └── README.md # Este arquivo
+
+## Como Rodar o Projeto
+
+### Pré-requisitos
+
+- **Node.js** (recomenda-se a versão 14 ou superior)
+
+### Instalação
+
+1. Clone o repositório:
+
+   ```bash
+   git clone https://github.com/seuusuario/ProjetoBanco.git
+   cd ProjetoBanco
+   cd backend
+   npm install
