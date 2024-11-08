@@ -5,11 +5,23 @@ Este é um projeto simples de simulação de banco utilizando apenas uma tabela 
 ## Tecnologias Utilizadas
 
 - **Back-end**: Node.js (com Express)
-- **Front-end**: HTML, CSS, JavaScript
+- **Front-end**: 
 - **Banco de Dados**: Simulado (sem banco real, dados mantidos na memória)
 
 ## Estrutura do Projeto
-/ProjetoBanco │ ├── /backend # Código do servidor (Node.js + Express) │ ├── server.js # Arquivo principal do servidor │ ├── routes.js # Roteamento da API │ └── data.js # Armazenamento de dados (simulado) │ ├── /frontend # Arquivos do front-end (HTML, CSS, JS) │ ├── index.html # Interface do usuário │ ├── style.css # Estilos da página │ └── script.js # Lógica de interação com a API │ └── README.md # Este arquivo
+/ProjetoBanco
+│
+├── /backend            # Código do servidor (Node.js + Express)
+│   ├── app.js       # Arquivo principal do servidor
+│   ├── routes.js       # Roteamento da API
+│   └── data.js         # Armazenamento de dados (simulado)
+│
+├── /frontend           # Arquivos do front-end (HTML, CSS, JS)
+│   ├── index.html      # Interface do usuário
+│   ├── style.css       # Estilos da página
+│   └── script.js       # Lógica de interação com a API
+│
+└── README.md           # Este arquivo
 
 ## Como Rodar o Projeto
 
@@ -26,3 +38,6 @@ Este é um projeto simples de simulação de banco utilizando apenas uma tabela 
    cd ProjetoBanco
    cd backend
    npm install
+
+### Rodando o Back-end (e servindo o Front-end)
+ - Após a instalação das dependências, inicie o servidor no diretório backend:
