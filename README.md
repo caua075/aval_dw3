@@ -37,7 +37,7 @@ Este é um projeto simples de simulação de banco utilizando apenas uma tabela 
    git clone https://github.com/caua075/aval_dw3.git
    cd ProjetoBanco
 
-[//]: # (Este é um comentário em Markdown)
+<!-- Este é um comentário em Markdown -->
    ```bash
    cd backend
    npm install
