@@ -34,10 +34,13 @@ Este é um projeto simples de simulação de banco utilizando apenas uma tabela 
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seuusuario/ProjetoBanco.git
+   git clone https://github.com/caua075/aval_dw3.git
    cd ProjetoBanco
    cd backend
    npm install
 
 ### Rodando o Back-end (e servindo o Front-end)
  - Após a instalação das dependências, inicie o servidor no diretório backend:
+   
+   ```bash
+   node app.js
