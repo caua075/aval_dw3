@@ -36,7 +36,15 @@ Este é um projeto simples de simulação de banco utilizando apenas uma tabela 
    ```bash
    git clone https://github.com/caua075/aval_dw3.git
    cd ProjetoBanco
+
+[//]: Para o front-end (Nunjucks)
+   ```bash
    cd backend
+   npm install
+
+[//]: Para o front-end (Nunjucks)
+   ```bash
+   cd ../frontend
    npm install
 
 ### Rodando o Back-end (e servindo o Front-end)
@@ -44,3 +52,4 @@ Este é um projeto simples de simulação de banco utilizando apenas uma tabela 
    
    ```bash
    node app.js
+
