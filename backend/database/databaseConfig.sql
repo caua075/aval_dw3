@@ -1,8 +1,18 @@
 -- Criação do banco
 CREATE DATABASE bd_futebol;
+\C bd_futebol;
+
+-- Tabela Times
+CREATE TABLE IF NOT EXISTS  times (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    data_criacao DATE NOT NULL,
+    orcamento DECIMAL(10, 2) NOT NULL,
+    removido BOOLEAN DEFAULT FALSE
+);
 
 -- Tabela Jogadores
-CREATE TABLE jogadores (
+CREATE TABLE IF NOT EXISTS jogadores (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     data_nascimento DATE NOT NULL,
@@ -11,17 +21,8 @@ CREATE TABLE jogadores (
     time_id INT REFERENCES times(id) ON DELETE SET NULL
 );
 
--- Tabela Times
-CREATE TABLE times (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    data_criacao DATE NOT NULL,
-    orcamento DECIMAL(10, 2) NOT NULL,
-    removido BOOLEAN DEFAULT FALSE
-);
-
 -- Tabela Campeonatos
-CREATE TABLE campeonatos (
+CREATE TABLE IF NOT EXISTS campeonatos (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     data_inicio DATE NOT NULL,
@@ -30,7 +31,7 @@ CREATE TABLE campeonatos (
 );
 
 -- Tabela Associativa TimesCampeonatos (M:N)
-CREATE TABLE times_campeonatos (
+CREATE TABLE IF NOT EXISTS times_campeonatos (
     id SERIAL PRIMARY KEY,
     time_id INT REFERENCES times(id) ON DELETE CASCADE,
     campeonato_id INT REFERENCES campeonatos(id) ON DELETE CASCADE
