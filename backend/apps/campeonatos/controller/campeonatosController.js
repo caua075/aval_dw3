@@ -49,10 +49,10 @@ exports.insertCampeonato = async (req, res) => {
 // Atualiza um campeonato
 exports.updateCampeonato = async (req, res) => {
   const { id } = req.params;
-  const { nome, data_inicio, preimo } = req.body;
+  const { nome, data_inicio, premio } = req.body;
   try {
     const result = await pool.query(
-      `UPDATE campeonatos SET nome = $1, data_inicio = $2, preimo = $3 WHERE id = $5 RETURNING *`,
+      `UPDATE campeonatos SET nome = $1, data_inicio = $2, premio = $3 WHERE id = $5 RETURNING *`,
       [nome, data_inicio, premio, id]
     );
     if (result.rowCount === 0) {

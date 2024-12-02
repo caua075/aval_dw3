@@ -4,10 +4,13 @@ const authenticateToken = require('../../../middleware/authenticateToken');
 
 const router = express.Router();
 
-router.get('/', authenticateToken, jogadoresController.getJogadores);
-router.get('/:id', authenticateToken, jogadoresController.getJogadorById);
-router.post('/', authenticateToken, jogadoresController.insertJogador);
-router.put('/:id', authenticateToken, jogadoresController.updateJogador);
-router.delete('/:id', authenticateToken, jogadoresController.deleteJogador);
+router.get('/jog', authenticateToken, jogadoresController.getJogadores);
+router.get('/jog/:id', authenticateToken, jogadoresController.getJogadorById);
+router.post('/jog', authenticateToken, jogadoresController.insertJogador);
+router.put('/jog/:id', authenticateToken, jogadoresController.updateJogador);
+router.delete('/jog/:id', authenticateToken, jogadoresController.deleteJogador);
+
+routerApp.post("/Login", appLogin.Login);
+routerApp.post("/Logout", appLogin.Logout);
 
 module.exports = router;

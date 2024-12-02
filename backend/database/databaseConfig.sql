@@ -1,6 +1,5 @@
 -- Criação do banco
 CREATE DATABASE bd_futebol;
-\C bd_futebol;
 
 -- Tabela Times
 CREATE TABLE IF NOT EXISTS  times (
