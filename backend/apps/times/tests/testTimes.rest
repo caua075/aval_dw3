@@ -18,7 +18,7 @@ Content-Type: application/json
 # GetAllTimes
 # -------------------------
 GET http://localhost:30000/tim
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzIzNDc2MiwiZXhwIjoxNzMzMjQxOTYyfQ.zhGdxVgU3CaUrzhV3nNUGnDrMR_XrMCGiCCaX09BOyQ
 Content-Type: application/json
 
 ###
@@ -27,7 +27,7 @@ Content-Type: application/json
 # GetTimeById
 # -------------------------
 GET http://localhost:30000/tim/1
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzIzNDc2MiwiZXhwIjoxNzMzMjQxOTYyfQ.zhGdxVgU3CaUrzhV3nNUGnDrMR_XrMCGiCCaX09BOyQ
 Content-Type: application/json
 
 ###
@@ -36,7 +36,7 @@ Content-Type: application/json
 # InsertTime
 # -------------------------
 POST http://localhost:30000/tim
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzIzNDc2MiwiZXhwIjoxNzMzMjQxOTYyfQ.zhGdxVgU3CaUrzhV3nNUGnDrMR_XrMCGiCCaX09BOyQ
 Content-Type: application/json
 
 {
@@ -51,7 +51,7 @@ Content-Type: application/json
 # UpdateTime
 # -------------------------
 PUT http://localhost:30000/tim/1
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzIzNDc2MiwiZXhwIjoxNzMzMjQxOTYyfQ.zhGdxVgU3CaUrzhV3nNUGnDrMR_XrMCGiCCaX09BOyQ
 Content-Type: application/json
 
 {
