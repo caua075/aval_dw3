@@ -1,12 +1,13 @@
 const express = require('express');
 const campeonatosController = require('../controller/campeonatosController');
+const authenticateToken = require('../../../middleware/authenticateToken');
 const appLogin = require("../../login/controller/ctlLogin");
 
 const router = express.Router();
 
 // Rota Login
-routerApp.post("/login", appLogin.Login);
-routerApp.post("/logout", appLogin.Logout);
+router.post("/login", appLogin.Login);
+router.post("/logout", appLogin.Logout);
 
 // Rota Campeonatos
 router.get('/', appLogin.AutenticaJWT, campeonatosController.getCampeonato);

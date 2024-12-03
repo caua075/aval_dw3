@@ -13,7 +13,7 @@ const Login = async (req, res, next) => {
   if (bCrypt.compareSync(req.body.Password, credencial[0].password)) {
     //auth ok
     const username = credencial[0].username;
-    const token = jwt.sign({ username }, process.env.SECRET_API, {
+    const token = jwt.sign({ username }, process.env.JWT_SECRET, {
       expiresIn: 120*60, //@ Expira em 02 horas
     });
     return res.json({ auth: true, token: token });
@@ -32,7 +32,7 @@ function AutenticaJWT(req, res, next) {
   const bearer = tokenHeader.split(" ");
   const token = bearer[1];
 
-  jwt.verify(token, process.env.SECRET_API, function (err, decoded) {
+  jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
     if (err)
       return res
         .status(200)

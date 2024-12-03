@@ -5,7 +5,7 @@ require('dotenv').config();
 const routerCp = require('./apps/campeonatos/routes/campeonatosRoutes');
 const routerJg = require('./apps/jogadores/routes/jogadoresRoutes');
 const routerTm = require('./apps/times/routes/timesRoutes');
-const routerLg  = require('./apps/login/controller/ctlLogin');
+const ctlLogin = require('./apps/login/controller/ctlLogin');
 
 const app = express();
 const port = process.env.PORT || 30000;
@@ -23,6 +23,9 @@ app.get('/', (req, res) => {
 app.use('/camp', routerCp); // Rota base para campeonatos
 app.use('/jog', routerJg);  // Rota base para jogadores
 app.use('/tim', routerTm);  // Rota base para times
+app.get('/login/validate', ctlLogin.AutenticaJWT);
+app.post('/login', ctlLogin.Login);
+app.post('/logout', ctlLogin.Logout);
 
 // Iniciar o servidor
 app.listen(port, () => {
