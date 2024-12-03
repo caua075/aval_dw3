@@ -18,7 +18,7 @@ Content-Type: application/json
 # GetAllJogadores
 # -------------------------
 GET http://localhost:30000/jog
-Authorization: Bearer <token>
+Authorization: Bearer <seuToken>
 Content-Type: application/json
 
 ###
@@ -27,7 +27,7 @@ Content-Type: application/json
 # GetJogadorById
 # -------------------------
 GET http://localhost:30000/jog/1
-Authorization: Bearer <token>
+Authorization: Bearer <seuToken>
 Content-Type: application/json
 
 ###
@@ -36,7 +36,7 @@ Content-Type: application/json
 # InsertJogador
 # -------------------------
 POST http://localhost:30000/jog
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzIzNjA0OSwiZXhwIjoxNzMzMjQzMjQ5fQ.VdGL8HHh5qaL-ZLZsj-MVs1QoKo9K7mS3hKqrc-tc1w
+Authorization: Bearer <seuToken>
 Content-Type: application/json
 
 {
@@ -52,7 +52,7 @@ Content-Type: application/json
 # UpdateJogador
 # -------------------------
 PUT http://localhost:30000/jog/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzIzNjA0OSwiZXhwIjoxNzMzMjQzMjQ5fQ.VdGL8HHh5qaL-ZLZsj-MVs1QoKo9K7mS3hKqrc-tc1w
+Authorization: Bearer <seuToken>
 Content-Type: application/json
 
 {
@@ -67,6 +67,6 @@ Content-Type: application/json
 # -------------------------
 # DeleteJogador (Soft Delete)
 # -------------------------
-DELETE http://localhost:30000/jog/1
-Authorization: Bearer <token>
+DELETE http://localhost:30000/jog/2
+Authorization: Bearer <seuToken>
 Content-Type: application/json

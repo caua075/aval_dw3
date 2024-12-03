@@ -11,14 +11,13 @@ Content-Type: application/json
 
 ### Após o login, copie o token JWT retornado e o insira no campo Authorization das requisições abaixo.
 ### Substitua <token> pelo JWT retornado após o login.
-
 ###
 
 # -------------------------
 # GetAllTimes
 # -------------------------
 GET http://localhost:30000/tim
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzIzNDc2MiwiZXhwIjoxNzMzMjQxOTYyfQ.zhGdxVgU3CaUrzhV3nNUGnDrMR_XrMCGiCCaX09BOyQ
+Authorization: Bearer <seuToken>
 Content-Type: application/json
 
 ###
@@ -27,7 +26,7 @@ Content-Type: application/json
 # GetTimeById
 # -------------------------
 GET http://localhost:30000/tim/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzIzNDc2MiwiZXhwIjoxNzMzMjQxOTYyfQ.zhGdxVgU3CaUrzhV3nNUGnDrMR_XrMCGiCCaX09BOyQ
+Authorization: Bearer <seuToken>
 Content-Type: application/json
 
 ###
@@ -36,7 +35,7 @@ Content-Type: application/json
 # InsertTime
 # -------------------------
 POST http://localhost:30000/tim
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzIzNTQ5NSwiZXhwIjoxNzMzMjQyNjk1fQ.8I8GNuVMtbqoUXLMV3m8-j2k_nhA6OEoiaFZZFyF8uk
+Authorization: Bearer <seuToken>
 Content-Type: application/json
 
 {
@@ -51,7 +50,7 @@ Content-Type: application/json
 # UpdateTime
 # -------------------------
 PUT http://localhost:30000/tim/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzIzNDc2MiwiZXhwIjoxNzMzMjQxOTYyfQ.zhGdxVgU3CaUrzhV3nNUGnDrMR_XrMCGiCCaX09BOyQ
+Authorization: Bearer <seuToken>
 Content-Type: application/json
 
 {
@@ -65,6 +64,6 @@ Content-Type: application/json
 # -------------------------
 # DeleteTime (Soft Delete)
 # -------------------------
-DELETE http://localhost:30000/tim/1
-Authorization: Bearer <token>
+DELETE http://localhost:30000/tim/2
+Authorization: Bearer <seuToken>
 Content-Type: application/json

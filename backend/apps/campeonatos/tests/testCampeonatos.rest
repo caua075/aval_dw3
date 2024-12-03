@@ -18,7 +18,7 @@ Content-Type: application/json
 # GetAllCampeonatos
 # -------------------------
 GET http://localhost:30000/camp
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzI0MzA0NSwiZXhwIjoxNzMzMjUwMjQ1fQ.xKG_NHPie6ohsD2KOANohkUiSQzh3WdeP41IzOVsraE
+Authorization: Bearer <seuToken>
 Content-Type: application/json
 
 ###
@@ -27,7 +27,7 @@ Content-Type: application/json
 # GetCampeonatoById
 # -------------------------
 GET http://localhost:30000/camp/2
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzI0MzA0NSwiZXhwIjoxNzMzMjUwMjQ1fQ.xKG_NHPie6ohsD2KOANohkUiSQzh3WdeP41IzOVsraE
+Authorization: Bearer <seuToken>
 Content-Type: application/json
 
 ###
@@ -36,7 +36,7 @@ Content-Type: application/json
 # InsertCampeonato
 # -------------------------
 POST http://localhost:30000/camp
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzI0MzA0NSwiZXhwIjoxNzMzMjUwMjQ1fQ.xKG_NHPie6ohsD2KOANohkUiSQzh3WdeP41IzOVsraE
+Authorization: Bearer <seuToken>
 Content-Type: application/json
 
 {
@@ -51,7 +51,7 @@ Content-Type: application/json
 # UpdateCampeonato
 # -------------------------
 PUT http://localhost:30000/camp/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzI0MzA0NSwiZXhwIjoxNzMzMjUwMjQ1fQ.xKG_NHPie6ohsD2KOANohkUiSQzh3WdeP41IzOVsraE
+Authorization: Bearer <seuToken>
 Content-Type: application/json
 
 {
@@ -66,5 +66,5 @@ Content-Type: application/json
 # DeleteCampeonato (Soft Delete)
 # -------------------------
 DELETE http://localhost:30000/camp/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzI0MzA0NSwiZXhwIjoxNzMzMjUwMjQ1fQ.xKG_NHPie6ohsD2KOANohkUiSQzh3WdeP41IzOVsraE
+Authorization: Bearer <seuToken>
 Content-Type: application/json
