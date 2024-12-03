@@ -36,14 +36,14 @@ Content-Type: application/json
 # InsertJogador
 # -------------------------
 POST http://localhost:30000/jog
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzIzNjA0OSwiZXhwIjoxNzMzMjQzMjQ5fQ.VdGL8HHh5qaL-ZLZsj-MVs1QoKo9K7mS3hKqrc-tc1w
 Content-Type: application/json
 
 {
     "nome": "Carlos Silva",
     "data_nascimento": "1990-07-15",
     "salario": 50000,
-    "time_id": 2
+    "time_id": 1
 }
 
 ###
@@ -52,14 +52,14 @@ Content-Type: application/json
 # UpdateJogador
 # -------------------------
 PUT http://localhost:30000/jog/1
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzIzNjA0OSwiZXhwIjoxNzMzMjQzMjQ5fQ.VdGL8HHh5qaL-ZLZsj-MVs1QoKo9K7mS3hKqrc-tc1w
 Content-Type: application/json
 
 {
     "nome": "Carlos Silva Atualizado",
     "data_nascimento": "1990-07-15",
     "salario": 55000,
-    "time_id": 3
+    "time_id": 1
 }
 
 ###

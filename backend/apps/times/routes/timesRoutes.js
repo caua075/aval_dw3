@@ -8,10 +8,10 @@ const router = express.Router();
 router.post("/login", appLogin.Login);
 router.post("/logout", appLogin.Logout);
 
-router.get('/tim/', authenticateToken, timesController.getAllTimes);
-router.get('/tim/:id', authenticateToken, timesController.getTimeById);
-router.post('/tim', authenticateToken, timesController.insertTime);
-router.put('/tim/:id', authenticateToken, timesController.updateTime);
-router.delete('/tim/:id', authenticateToken, timesController.deleteTime);
+router.post('/', authenticateToken, timesController.insertTime);
+router.get('/', authenticateToken, timesController.getAllTimes);
+router.get('/:id', authenticateToken, timesController.getTimeById);
+router.put('/:id', authenticateToken, timesController.updateTime);
+router.delete('/:id', authenticateToken, timesController.deleteTime);
 
 module.exports = router;

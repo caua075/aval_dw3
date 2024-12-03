@@ -52,7 +52,7 @@ exports.updateTime = async (req, res) => {
   const { nome, data_criacao, orcamento } = req.body;
   try {
     const result = await pool.query(
-      `UPDATE times SET nome = $1, data_criacao = $2, orcamento = $3, WHERE id = $4 RETURNING *`,
+      `UPDATE times SET nome = $1, data_criacao = $2, orcamento = $3 WHERE id = $4 RETURNING *`,
       [nome, data_criacao, orcamento, id]
     );
     if (result.rowCount === 0) {

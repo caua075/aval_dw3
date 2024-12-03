@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 app.use('/camp', routerCp); // Rota base para campeonatos
 app.use('/jog', routerJg);  // Rota base para jogadores
 app.use('/tim', routerTm);  // Rota base para times
+
 app.get('/login/validate', ctlLogin.AutenticaJWT);
 app.post('/login', ctlLogin.Login);
 app.post('/logout', ctlLogin.Logout);

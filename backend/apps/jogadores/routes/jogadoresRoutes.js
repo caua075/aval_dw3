@@ -8,10 +8,10 @@ const router = express.Router();
 router.post("/login", appLogin.Login);
 router.post("/logout", appLogin.Logout);
 
-router.get('/jog', authenticateToken, jogadoresController.getJogadores);
-router.get('/jog/:id', authenticateToken, jogadoresController.getJogadorById);
-router.post('/jog', authenticateToken, jogadoresController.insertJogador);
-router.put('/jog/:id', authenticateToken, jogadoresController.updateJogador);
-router.delete('/jog/:id', authenticateToken, jogadoresController.deleteJogador);
+router.post('/', authenticateToken, jogadoresController.insertJogador);
+router.get('/', authenticateToken, jogadoresController.getJogadores);
+router.get('/:id', authenticateToken, jogadoresController.getJogadorById);
+router.put('/:id', authenticateToken, jogadoresController.updateJogador);
+router.delete('/:id', authenticateToken, jogadoresController.deleteJogador);
 
 module.exports = router;
