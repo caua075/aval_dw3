@@ -1,0 +1,70 @@
+# -------------------------
+# Login para obter o JWT Token
+# -------------------------
+POST http://localhost:30000/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "UserName": "qwe",
+    "Password": "qwe"
+}
+
+### Após o login, copie o token JWT retornado e o insira no campo Authorization das requisições abaixo.
+### Substitua <token> pelo JWT retornado após o login.
+
+###
+
+# -------------------------
+# GetAllCampeonatos
+# -------------------------
+GET http://localhost:30000/camp
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzI0MzA0NSwiZXhwIjoxNzMzMjUwMjQ1fQ.xKG_NHPie6ohsD2KOANohkUiSQzh3WdeP41IzOVsraE
+Content-Type: application/json
+
+###
+
+# -------------------------
+# GetCampeonatoById
+# -------------------------
+GET http://localhost:30000/camp/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzI0MzA0NSwiZXhwIjoxNzMzMjUwMjQ1fQ.xKG_NHPie6ohsD2KOANohkUiSQzh3WdeP41IzOVsraE
+Content-Type: application/json
+
+###
+
+# -------------------------
+# InsertCampeonato
+# -------------------------
+POST http://localhost:30000/camp
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzI0MzA0NSwiZXhwIjoxNzMzMjUwMjQ1fQ.xKG_NHPie6ohsD2KOANohkUiSQzh3WdeP41IzOVsraE
+Content-Type: application/json
+
+{
+    "nome": "CDB",
+    "data_inicio": "2024-02-15",
+    "premio": 700000
+}
+
+###
+
+# -------------------------
+# UpdateCampeonato
+# -------------------------
+PUT http://localhost:30000/camp/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzI0MzA0NSwiZXhwIjoxNzMzMjUwMjQ1fQ.xKG_NHPie6ohsD2KOANohkUiSQzh3WdeP41IzOVsraE
+Content-Type: application/json
+
+{
+    "nome": "Campeonato Brasileiro",
+    "data_inicio": "2019-02-15",
+    "premio": 1000000
+}
+
+###
+
+# -------------------------
+# DeleteCampeonato (Soft Delete)
+# -------------------------
+DELETE http://localhost:30000/camp/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczMzI0MzA0NSwiZXhwIjoxNzMzMjUwMjQ1fQ.xKG_NHPie6ohsD2KOANohkUiSQzh3WdeP41IzOVsraE
+Content-Type: application/json

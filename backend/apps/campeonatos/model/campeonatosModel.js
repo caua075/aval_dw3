@@ -45,7 +45,7 @@ const insertCampeonato = async (nome, data_inicio, premio) => {
 const updateCampeonato = async (id, nome, data_inicio, premio) => {
   try {
     const result = await pool.query(
-      `UPDATE campeonatos SET nome = $1, data_inicio = $2, premio = $3 WHERE id = $5 RETURNING *`,
+      `UPDATE campeonatos SET nome = $1, data_inicio = $2, premio = $3 WHERE id = $4 RETURNING *`,
       [nome, data_inicio, premio, id]
     );
     return result.rowCount > 0 ? result.rows[0] : null;

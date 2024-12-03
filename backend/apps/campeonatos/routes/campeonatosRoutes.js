@@ -10,10 +10,10 @@ router.post("/login", appLogin.Login);
 router.post("/logout", appLogin.Logout);
 
 // Rota Campeonatos
-router.get('/', appLogin.AutenticaJWT, campeonatosController.getCampeonato);
-router.get('/:id', appLogin.AutenticaJWT, campeonatosController.getCampeonatoById);
-router.post('/', appLogin.AutenticaJWT, campeonatosController.insertCampeonato);
-router.put('/:id', appLogin.AutenticaJWT, campeonatosController.updateCampeonato);
-router.delete('/:id', appLogin.AutenticaJWT, campeonatosController.deleteCampeonato);
+router.get('/', authenticateToken, campeonatosController.getCampeonato);
+router.get('/:id', authenticateToken, campeonatosController.getCampeonatoById);
+router.post('/', authenticateToken, campeonatosController.insertCampeonato);
+router.put('/:id', authenticateToken, campeonatosController.updateCampeonato);
+router.delete('/:id', authenticateToken, campeonatosController.deleteCampeonato);
 
 module.exports = router;

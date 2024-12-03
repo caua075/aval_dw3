@@ -1,5 +1,6 @@
 -- Criação do banco
 CREATE DATABASE bd_futebol;
+\c bd_futebol;
 
 -- Tabela Times
 CREATE TABLE IF NOT EXISTS  times (
@@ -48,4 +49,4 @@ CREATE EXTENSION if NOT EXISTS pgcrypto;
 insert into usuarios values 
     (default, 'admin', crypt('admin', gen_salt('bf'))), -- senha criptografada com bcrypt
     (default, 'qwe', crypt('qwe', gen_salt('bf'))) -- senha criptografada com bcrypt
-ON CONFLICT DO NOTHING;
+ON CONFLICT DO NOTHING;
