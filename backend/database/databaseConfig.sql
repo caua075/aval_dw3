@@ -35,3 +35,17 @@ CREATE TABLE IF NOT EXISTS times_campeonatos (
     time_id INT REFERENCES times(id) ON DELETE CASCADE,
     campeonato_id INT REFERENCES campeonatos(id) ON DELETE CASCADE
 );
+
+create table IF NOT EXISTS usuarios (
+    usuarioid bigserial constraint pk_usuarios PRIMARY KEY,
+    username varchar(10) UNIQUE,
+    password text,
+    deleted boolean DEFAULT false
+);
+
+CREATE EXTENSION if NOT EXISTS pgcrypto;
+
+insert into usuarios values 
+    (default, 'admin', crypt('admin', gen_salt('bf'))), -- senha criptografada com bcrypt
+    (default, 'qwe', crypt('qwe', gen_salt('bf'))) -- senha criptografada com bcrypt
+ON CONFLICT DO NOTHING;

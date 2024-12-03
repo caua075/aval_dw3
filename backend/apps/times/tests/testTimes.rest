@@ -1,0 +1,70 @@
+# -------------------------
+# Login para obter o JWT Token
+# -------------------------
+POST http://localhost:30000/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "UserName": "qwe",
+    "Password": "qwe"
+}
+
+### Após o login, copie o token JWT retornado e o insira no campo Authorization das requisições abaixo.
+### Substitua <token> pelo JWT retornado após o login.
+
+###
+
+# -------------------------
+# GetAllTimes
+# -------------------------
+GET http://localhost:30000/tim
+Authorization: Bearer <token>
+Content-Type: application/json
+
+###
+
+# -------------------------
+# GetTimeById
+# -------------------------
+GET http://localhost:30000/tim/1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+###
+
+# -------------------------
+# InsertTime
+# -------------------------
+POST http://localhost:30000/tim
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+    "nome": "Santos",
+    "data_criacao": "1912-04-14",
+    "orcamento": 30000
+}
+
+###
+
+# -------------------------
+# UpdateTime
+# -------------------------
+PUT http://localhost:30000/tim/1
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+    "nome": "Santos Futebol Clube",
+    "data_criacao": "1912-04-14",
+    "orcamento": 55000
+}
+
+###
+
+# -------------------------
+# DeleteTime (Soft Delete)
+# -------------------------
+DELETE http://localhost:30000/tim/1
+Authorization: Bearer <token>
+Content-Type: application/json
