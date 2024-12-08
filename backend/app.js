@@ -6,6 +6,7 @@ const routerCp = require('./apps/campeonatos/routes/campeonatosRoutes');
 const routerJg = require('./apps/jogadores/routes/jogadoresRoutes');
 const routerTm = require('./apps/times/routes/timesRoutes');
 const ctlLogin = require('./apps/login/controller/ctlLogin');
+const routerTmCp = require('./apps/time_campeonato/routes/time_campeonatoRoutes');
 
 const app = express();
 const port = process.env.PORT || 30000;
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 app.use('/camp', routerCp); // Rota base para campeonatos
 app.use('/jog', routerJg);  // Rota base para jogadores
 app.use('/tim', routerTm);  // Rota base para times
+app.use('/time_camp', routerTmCp); // Rota base para time_campeonatos
 
 app.get('/login/validate', ctlLogin.AutenticaJWT);
 app.post('/login', ctlLogin.Login);
