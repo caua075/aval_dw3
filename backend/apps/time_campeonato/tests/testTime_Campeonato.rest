@@ -35,10 +35,35 @@ Content-Type: application/json
 # InsertTime_Campeonato
 # -------------------------
 POST http://localhost:30000/time_camp
-Authorization: Bearer <seuToken>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczNDAwMzQzNywiZXhwIjoxNzM0MDEwNjM3fQ.FsWptKKZ9RGo4t08XXuwQ0uaFGuCXtl7nuRdaMi2mak
+Content-Type: application/json
+
+{
+    "time_id": 2,
+    "campeonato_id": 1
+}
+
+###
+
+# -------------------------
+# UpdateTime_Campeonato
+# -------------------------
+PUT http://localhost:30000/time_camp/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczNDAwOTA4MywiZXhwIjoxNzM0MDE2MjgzfQ.frceTm_f7heW8MehUI0ZPx1_5-qhbYkgkfYOCiK1j5A
 Content-Type: application/json
 
 {
     "time_id": 1,
     "campeonato_id": 1
 }
+
+###
+
+# -------------------------
+# DeleteTime_Campeonato
+# -------------------------
+DELETE http://localhost:30000/time_camp/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczNDAwOTA4MywiZXhwIjoxNzM0MDE2MjgzfQ.frceTm_f7heW8MehUI0ZPx1_5-qhbYkgkfYOCiK1j5A
+Content-Type: application/json
+
+###

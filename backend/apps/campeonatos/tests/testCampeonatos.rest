@@ -36,13 +36,13 @@ Content-Type: application/json
 # InsertCampeonato
 # -------------------------
 POST http://localhost:30000/camp
-Authorization: Bearer <seuToken>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTczNDAwMzQzNywiZXhwIjoxNzM0MDEwNjM3fQ.FsWptKKZ9RGo4t08XXuwQ0uaFGuCXtl7nuRdaMi2mak
 Content-Type: application/json
 
 {
-    "nome": "CDB",
+    "nome": "Brasileiro",
     "data_inicio": "2024-02-15",
-    "premio": 700000
+    "premio": 500000
 }
 
 ###
