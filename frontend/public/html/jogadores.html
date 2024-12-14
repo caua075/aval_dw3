@@ -4,121 +4,88 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jogadores</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
     <div class="container mt-5">
-      <header class="d-flex flex-column align-items-center mb-4">
-        <h1>Jogadores</h1>
-        <button onclick="window.location.href='/html/login.html'" class="btn btn-danger">Logout</button>
-      </header>
+      <h1 class="text-center">Gerenciamento de Jogadores</h1>
+      <button
+        onclick="window.location.href='/html/login.html'"
+        class="btn btn-danger mb-3"
+      >
+        Logout
+      </button>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+            <th>Salário</th>
+            <th>Time</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="jogadores-table"></tbody>
+      </table>
 
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-          <thead class="thead-dark">
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>Data de Nascimento</th>
-              <th>Salário</th>
-              <th>Time</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody id="jogadores-table-body"></tbody>
-        </table>
-      </div>
-
-      <section class="mt-4">
-        <h2>Adicionar Jogador</h2>
-        <form id="add-jogador-form">
-          <input type="text" id="nome" placeholder="Nome" required class="form-control mb-2" />
-          <input type="date" id="data_nascimento" required class="form-control mb-2" />
-          <input type="number" id="salario" placeholder="Salário" required class="form-control mb-2" />
-          <input type="number" id="time_id" placeholder="ID do Time" required class="form-control mb-2" />
-          <button type="submit" class="btn btn-primary">Adicionar</button>
-        </form>
-      </section>
+      <h3>Adicionar Jogador</h3>
+      <form id="jogador-form">
+        <input type="text" id="nome" placeholder="Nome" class="form-control mb-2" required />
+        <input type="date" id="data_nascimento" class="form-control mb-2" required />
+        <input type="number" id="salario" placeholder="Salário" class="form-control mb-2" required />
+        <input type="number" id="time_id" placeholder="ID do Time" class="form-control mb-2" />
+        <button type="submit" class="btn btn-primary">Adicionar</button>
+      </form>
     </div>
 
-    <script src="../js/app.js"></script>
     <script>
-      const token = localStorage.getItem("token");
-      if (!token) {
-        window.location.href = "/html/login.html";
+      const API_URL = "/jogadores/api";
+
+      async function loadJogadores() {
+        const response = await fetch(API_URL);
+        const jogadores = await response.json();
+        const table = document.getElementById("jogadores-table");
+
+        table.innerHTML = "";
+        jogadores.forEach((jogador) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${jogador.id}</td>
+            <td>${jogador.nome}</td>
+            <td>${jogador.data_nascimento}</td>
+            <td>${jogador.salario}</td>
+            <td>${jogador.time_id || "Sem time"}</td>
+            <td>
+              <button class="btn btn-warning btn-sm">Editar</button>
+              <button class="btn btn-danger btn-sm">Excluir</button>
+            </td>
+          `;
+          table.appendChild(row);
+        });
       }
 
-      async function loadJogadoresData() {
-        try {
-          const response = await fetch("http://localhost:3000/api/jogadores", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          });
-
-          if (response.ok) {
-            const jogadores = await response.json();
-            const tableBody = document.getElementById("jogadores-table-body");
-
-            tableBody.innerHTML = "";
-
-            jogadores.forEach((jogador) => {
-              const row = document.createElement("tr");
-              row.innerHTML = `
-                <td>${jogador.id}</td>
-                <td>${jogador.nome}</td>
-                <td>${jogador.data_nascimento}</td>
-                <td>R$ ${parseFloat(jogador.salario).toFixed(2)}</td>
-                <td>${jogador.time_id || "Sem time"}</td>
-                <td>
-                  <button class="btn btn-warning btn-sm" onclick="editJogador(${jogador.id})">Editar</button>
-                  <button class="btn btn-danger btn-sm" onclick="deleteJogador(${jogador.id})">Excluir</button>
-                </td>
-              `;
-              tableBody.appendChild(row);
-            });
-          } else {
-            alert("Erro ao carregar jogadores.");
-          }
-        } catch (error) {
-          console.error("Erro ao conectar com o servidor:", error);
-          alert("Erro ao conectar com o servidor.");
-        }
-      }
-
-      document.getElementById("add-jogador-form").addEventListener("submit", async (e) => {
+      document.getElementById("jogador-form").addEventListener("submit", async (e) => {
         e.preventDefault();
         const nome = document.getElementById("nome").value;
         const data_nascimento = document.getElementById("data_nascimento").value;
         const salario = document.getElementById("salario").value;
         const time_id = document.getElementById("time_id").value;
 
-        try {
-          const response = await fetch("http://localhost:3000/api/jogadores", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ nome, data_nascimento, salario, time_id }),
-          });
+        await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nome, data_nascimento, salario, time_id }),
+        });
 
-          if (response.ok) {
-            alert("Jogador adicionado com sucesso!");
-            loadJogadoresData();
-          } else {
-            alert("Erro ao adicionar jogador.");
-          }
-        } catch (error) {
-          console.error("Erro ao conectar com o servidor:", error);
-          alert("Erro ao conectar com o servidor.");
-        }
+        loadJogadores();
       });
 
-      window.onload = loadJogadoresData;
+      window.onload = loadJogadores;
     </script>
   </body>
 </html>
