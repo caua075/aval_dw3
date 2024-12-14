@@ -3,22 +3,33 @@ const bCrypt = require("bcryptjs");
 const mdlLogin = require("../model/mdlLogin");
 
 const Login = async (req, res, next) => { 
+  console.log("Login request received:", req.body);
+  const credencial = await mdlLogin.GetCredencial(req.body.username);
   
-  const credencial = await mdlLogin.GetCredencial(req.body.UserName);    
+  console.log("Credenciais recebidas:", credencial);    
    
   if (credencial.length == 0) {
+    console.log("Usuário não identificado", req.body.UserName);
     return res.status(403).json({ message: "Usuário não identificado!" });    
   }  
 
+  console.log("Senha fornecida:", req.body.password);
+  console.log("Senha armazenada:", credencial[0].password);
+
   if (bCrypt.compareSync(req.body.Password, credencial[0].password)) {
-    //auth ok
+    console.log("Autenticação bem-sucedida"); 
     const username = credencial[0].username;
     const token = jwt.sign({ username }, process.env.JWT_SECRET, {
-      expiresIn: 120*60, //@ Expira em 02 horas
+      expiresIn: 120 * 60, // Expira em 02 horas
     });
+    console.log("Login bem-sucedido para", username);
     return res.json({ auth: true, token: token });
+  } else {
+    console.log("Senha inválida ou não encontrada");
+    res.status(403).json({ message: "Login inválido!" });
   }
 
+  console.log("Login inválido para", req.body.UserName);
   res.status(403).json({ message: "Login inválido!" });
 };
 

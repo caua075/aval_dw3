@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const cors = require('cors');
 
 const routerCp = require('./apps/campeonatos/routes/campeonatosRoutes');
 const routerJg = require('./apps/jogadores/routes/jogadoresRoutes');
@@ -9,6 +10,9 @@ const ctlLogin = require('./apps/login/controller/ctlLogin');
 const routerTmCp = require('./apps/time_campeonato/routes/time_campeonatoRoutes');
 
 const app = express();
+
+app.use(cors());
+
 const port = process.env.PORT || 30000;
 
 // Middleware

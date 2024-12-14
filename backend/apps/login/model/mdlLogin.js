@@ -1,13 +1,18 @@
 const pool = require('../../../database/databaseConfig');
 
 const GetCredencial = async (loginPar) => {
-  return (
-    await pool.query(
-      "select username, password " +
-        "from usuarios where username = $1 and deleted = false",
+  console.log("Buscando credenciais para:", loginPar);
+  try {
+    const result = await pool.query(
+      "SELECT username, password FROM usuarios WHERE username = $1 AND deleted = false",
       [loginPar]
-    )
-  ).rows;
+    );
+    console.log("Credenciais encontradas:", result.rows);
+    return result.rows;
+  } catch (error) {
+    console.error('Erro ao acessar o banco de dados:', error);
+    throw error;
+  }
 };
 
 module.exports = {
