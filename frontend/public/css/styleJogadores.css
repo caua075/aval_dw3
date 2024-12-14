@@ -1,0 +1,46 @@
+/* Define a altura mínima da tela para garantir que o conteúdo ocupe toda a altura */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Garante que o conteúdo da página se centralize */
+  .container {
+    flex: 1;
+  }
+  
+  /* Estilo customizado para o título */
+  h1 {
+    font-size: 2.5rem;
+    color: #4a4a4a;
+  }
+  
+  /* Estilo para os cartões */
+  .card {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  /* Estilo do botão de logout */
+  .btn-danger {
+    background-color: #e53e3e;
+    border-color: #e53e3e;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c53030;
+    border-color: #9b2c2c;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #6c757d;
+  }
+  

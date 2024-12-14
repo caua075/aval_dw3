@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styleJogadores.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="d-flex justify-content-between align-items-center mt-4">
+        <h1>Bem-vindo ao Sistema ERP</h1>
+        <button onclick="logout()" class="btn btn-danger">Logout</button>
+      </header>
+
+      <div class="row mt-4">
+        <!-- Link para cadastro de jogadores -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body text-center">
+              <h5 class="card-title">Cadastro de Jogadores</h5>
+              <p class="card-text">Adicione novos jogadores ao sistema.</p>
+              <a href="/html/jogadores.html" class="btn btn-primary">Cadastrar Jogador</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Link para cadastro de times -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body text-center">
+              <h5 class="card-title">Cadastro de Times</h5>
+              <p class="card-text">Adicione novos times ao sistema.</p>
+              <a href="/html/cadastro_times.html" class="btn btn-primary">Cadastrar Time</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Link para cadastro de campeonatos -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body text-center">
+              <h5 class="card-title">Cadastro de Campeonatos</h5>
+              <p class="card-text">Adicione novos campeonatos ao sistema.</p>
+              <a href="/html/cadastro_campeonatos.html" class="btn btn-primary">Cadastrar Campeonato</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      // Função de Logout
+      function logout() {
+        localStorage.removeItem("token");
+        window.location.href = "/html/login.html";
+      }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
