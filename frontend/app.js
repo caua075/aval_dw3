@@ -1,9 +1,14 @@
-const express = require('express');
-const path = require('path');
-const jogadoresRoutes = require('./app/jogadores/routes/jogadoresRoutes');
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';  // Importando fileURLToPath para usar import.meta.url
+import jogadoresRoutes from './app/jogadores/routes/jogadoresRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Usando import.meta.url para simular __dirname
+const __filename = fileURLToPath(import.meta.url);  // Obtém o caminho do arquivo atual
+const __dirname = path.dirname(__filename);  // Calcula o diretório do arquivo atual
 
 // Middleware para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
@@ -14,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Rota principal para login
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/html/login.html'));
+  res.sendFile(path.join(__dirname, 'public', 'html', 'login.html'));
 });
 
 // Rotas para jogadores

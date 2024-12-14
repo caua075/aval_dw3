@@ -1,9 +1,9 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';  // Usando import, já que é ESM
 
 const API_URL = 'http://localhost:3000/api/jogadores';
 
-// Obtém todos os jogadores
-exports.getJogadores = async (req, res) => {
+// Função para obter todos os jogadores
+export const getJogadores = async (req, res) => {
   try {
     const response = await fetch(API_URL, {
       method: 'GET',
@@ -17,8 +17,8 @@ exports.getJogadores = async (req, res) => {
   }
 };
 
-// Insere um novo jogador
-exports.insertJogador = async (req, res) => {
+// Função para inserir um novo jogador
+export const insertJogador = async (req, res) => {
   try {
     const response = await fetch(API_URL, {
       method: 'POST',
@@ -33,8 +33,8 @@ exports.insertJogador = async (req, res) => {
   }
 };
 
-// Atualiza um jogador
-exports.updateJogador = async (req, res) => {
+// Função para atualizar um jogador
+export const updateJogador = async (req, res) => {
   try {
     const response = await fetch(`${API_URL}/${req.params.id}`, {
       method: 'PUT',
@@ -49,8 +49,8 @@ exports.updateJogador = async (req, res) => {
   }
 };
 
-// Remove logicamente um jogador
-exports.deleteJogador = async (req, res) => {
+// Função para remover logicamente um jogador (soft delete)
+export const deleteJogador = async (req, res) => {
   try {
     const response = await fetch(`${API_URL}/${req.params.id}`, {
       method: 'DELETE',
@@ -63,3 +63,12 @@ exports.deleteJogador = async (req, res) => {
     res.status(500).json({ message: 'Erro ao remover jogador.' });
   }
 };
+
+const jogadoresController = {
+  getJogadores,
+  insertJogador,
+  updateJogador,
+  deleteJogador
+};
+
+export default jogadoresController;

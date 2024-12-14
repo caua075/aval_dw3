@@ -1,6 +1,6 @@
-const express = require('express');
-const path = require('path');
-const jogadoresController = require('../controller/jogadoresController');
+import path from 'path';
+import express from 'express';
+import jogadoresController from '../controller/jogadoresController.js';
 
 const router = express.Router();
 
@@ -21,4 +21,4 @@ router.put('/api/:id', jogadoresController.updateJogador);
 // API para remover jogador
 router.delete('/api/:id', jogadoresController.deleteJogador);
 
-module.exports = router;
+export default router;
