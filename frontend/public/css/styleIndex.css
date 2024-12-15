@@ -1,0 +1,96 @@
+body {
+    background-color: #f0f2f5;
+    font-family: "Arial", sans-serif;
+  }
+
+  .header {
+    background: linear-gradient(90deg, #007bff, #004085);
+    color: white;
+    padding: 20px 15px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .header h1 {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .header button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(90deg, #dc3545, #a71d2a);
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .header button:hover {
+    background: linear-gradient(90deg, #c82333, #8b121d);
+    transform: scale(1.05);
+  }
+
+  .card {
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 15px; /* Arredondar bordas */
+    padding-left: 15px; /* Espaçamento interno */
+    padding-top: 3px;
+    padding-bottom: 30px;
+    margin-bottom: 30px; /* Espaçamento entre os cards */
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-title {
+    font-weight: bold;
+    color: #343a40;
+  }
+
+  .card-text {
+    margin-bottom: 20px; /* Espaçamento extra abaixo do texto */
+  }
+
+  .icon-container {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+
+  .btn-custom {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: white;
+    font-weight: bold;
+    border-radius: 50px; /* Botões mais arredondados */
+    padding: 10px 20px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-custom:hover {
+    background: linear-gradient(90deg, #0056b3, #003d80);
+    color: white;
+    transform: scale(1.05);
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #6c757d;
+    font-size: 0.9rem;
+  }

@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';  // Importando fileURLToPath para usar import.meta.url
 import jogadoresRoutes from './app/jogadores/routes/jogadoresRoutes.js';
+import timesRoutes from './app/times/routes/timesRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,6 +25,9 @@ app.get('/', (req, res) => {
 
 // Rotas para jogadores
 app.use('/jogadores', jogadoresRoutes);
+
+// Rotas para times
+app.use('/times', timesRoutes);
 
 // Inicia o servidor
 app.listen(PORT, () => {

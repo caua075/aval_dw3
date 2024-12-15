@@ -1,75 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Sistema de Futebol</title>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/styleIndex.css" />
-  </head>
-  <body>
-    <div class="container">
-      <header class="d-flex justify-content-between align-items-center mt-4">
-        <h1>Bem-vindo ao Sistema ERP</h1>
-        <button onclick="logout()" class="btn btn-danger">Logout</button>
-      </header>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 
-      <div class="row mt-4">
-        <!-- Link para cadastro de jogadores -->
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title">Cadastro de Jogadores</h5>
-              <p class="card-text">Adicione novos jogadores ao sistema.</p>
-              <a href="/html/jogadores.html" class="btn btn-primary">Cadastrar Jogador</a>
-            </div>
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/styleIndex.css" />
+
+</head>
+
+<body>
+  <div class="container mt-4">
+    <!-- Header -->
+    <div class="header">
+      <h1>Sistema de Futebol</h1>
+      <button onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+
+    <!-- Cards Section -->
+    <div class="row text-center">
+      <!-- Jogadores -->
+      <div class="col-md-4">
+        <div class="card py-4">
+          <div class="icon-container">
+            <i class="fas fa-user-friends"></i>
           </div>
+          <h5 class="card-title">Cadastro de Jogadores</h5>
+          <p class="card-text">Adicione novos jogadores ao sistema.</p>
+          <a href="/html/jogadores.html" class="btn btn-custom">Cadastrar Jogador</a>
         </div>
+      </div>
 
-        <!-- Link para cadastro de times -->
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title">Cadastro de Times</h5>
-              <p class="card-text">Adicione novos times ao sistema.</p>
-              <a href="/html/cadastro_times.html" class="btn btn-primary">Cadastrar Time</a>
-            </div>
+      <!-- Times -->
+      <div class="col-md-4">
+        <div class="card py-4">
+          <div class="icon-container">
+            <i class="fas fa-users"></i>
           </div>
+          <h5 class="card-title">Cadastro de Times</h5>
+          <p class="card-text">Adicione novos times ao sistema.</p>
+          <a href="/html/times.html" class="btn btn-custom">Cadastrar Time</a>
         </div>
+      </div>
 
-        <!-- Link para cadastro de campeonatos -->
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title">Cadastro de Campeonatos</h5>
-              <p class="card-text">Adicione novos campeonatos ao sistema.</p>
-              <a href="/html/cadastro_campeonatos.html" class="btn btn-primary">Cadastrar Campeonato</a>
-            </div>
+      <!-- Campeonatos -->
+      <div class="col-md-4">
+        <div class="card py-4">
+          <div class="icon-container">
+            <i class="fas fa-trophy"></i>
           </div>
+          <h5 class="card-title">Cadastro de Campeonatos</h5>
+          <p class="card-text">Adicione novos campeonatos ao sistema.</p>
+          <a href="/html/cadastro_campeonatos.html" class="btn btn-custom">Cadastrar Campeonato</a>
         </div>
       </div>
     </div>
 
-    <!-- Scripts -->
-    <script>
-      // Função de Logout
-      function logout() {
-        localStorage.removeItem("token");
-        window.location.href = "/html/login.html";
-      }
-    </script>
+    <!-- Footer -->
+    <footer>
+      &copy; 2024 Sistema de Futebol. Todos os direitos reservados.
+    </footer>
+  </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </body>
+  <!-- Scripts -->
+  <script>
+    // Função de Logout
+    function logout() {
+      localStorage.removeItem("token");
+      window.location.href = "/html/login.html";
+    }
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
 </html>
