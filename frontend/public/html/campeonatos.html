@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Campeonatos</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/styleJogadores.css" />
+</head>
+
+<body>
+    <div class="container mt-4">
+        <header class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-center w-100">Cadastro de Campeonatos</h1>
+            <div class="d-flex gap-3">
+                <button onclick="window.location.href='/html/index.html'" class="btn btn-secondary">
+                    Voltar
+                </button>
+                <button onclick="logout()" class="btn btn-danger">Logout</button>
+            </div>
+        </header>
+
+        <div class="row">
+            <!-- Formulário de Cadastro -->
+            <div class="col-md-6">
+                <section class="mb-4">
+                    <h2 class="text-center">Adicionar Campeonato</h2>
+                    <form id="add-camp-form">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" id="nome" class="form-control" placeholder="Nome do Campeonato" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="data_inicio" class="form-label">Data de Inicio</label>
+                            <input type="date" id="data_inicio" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="premio" class="form-label">Prêmio</label>
+                            <input type="number" id="premio" class="form-control" placeholder="Prêmio do Campeonato(R$)" required />
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">
+                                Adicionar Campeonato
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+            <!-- Lista de Campeonatos -->
+            <div class="col-md-6">
+                <section>
+                    <h2 class="text-center">Lista de Campeonatos</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Data de Início</th>
+                                    <th>Prêmio</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="camp-table-body"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Modal para Edição -->
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Editar Campeonato</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="edit-camp-form">
+                            <input type="hidden" id="editId" />
+                            <div class="mb-3">
+                                <label for="editNome" class="form-label">Nome</label>
+                                <input type="text" id="editNome" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="editDataInicio" class="form-label">Data de Início</label>
+                                <input type="date" id="editDataInicio" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="editPremio" class="form-label">Prêmio</label>
+                                <input type="number" id="editṔremio" class="form-control" required />
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">
+                                    Salvar Alterações
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "/html/login.html";
+        }
+
+        async function loadCampeonatos() {
+            try {
+                const response = await fetch("http://localhost:30000/camp", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const campeonatos = await response.json();
+                    const tableBody = document.getElementById("camp-table-body");
+                    tableBody.innerHTML = "";
+
+                    campeonatos.forEach((campeonato) => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = ` 
+                <td>${campeonato.id}</td>
+                <td>${campeonato.nome}</td>
+                <td>${new Date(campeonato.data_inicio).toLocaleDateString("pt-BR")}</td>
+                <td>R$ ${parseFloat(campeonato.premio).toFixed(2)}</td>
+                <td>
+                  <button class="btn btn-warning btn-sm" onclick="openEditModal(${campeonato.id
+                            }, '${campeonato.nome}', '${campeonato.data_inicio}', ${campeonato.premio
+                            })">Editar</button>
+                  <button class="btn btn-danger btn-sm" onclick="deleteCampeonato(${campeonato.id
+                            })">Excluir</button>
+                </td>
+              `;
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    console.error("Erro ao carregar os campeonatos.");
+                }
+            } catch (error) {
+                console.error("Erro ao conectar com o servidor:", error);
+            }
+        }
+
+        function openEditModal(id, nome, data_inicio, premio) {
+            document.getElementById("editId").value = id;
+            document.getElementById("editNome").value = nome;
+
+            // Formatar a data para o formato 'YYYY-MM-DD'
+            const data = new Date(data_inicio);
+            const dataFormatada = data.toISOString().split("T")[0];
+
+            // Preencher o campo de data com a data formatada
+            document.getElementById("editDataInicio").value = dataFormatada;
+            document.getElementById("editPremio").value = orcamento;
+
+            const editModal = new bootstrap.Modal(
+                document.getElementById("editModal")
+            );
+            editModal.show();
+        }
+
+        document.getElementById("edit-camp-form").addEventListener("submit", async function (e) {e.preventDefault();
+
+                // Pegar os valores do formulário
+                const id = document.getElementById("editId").value;
+                const nome = document.getElementById("editNome").value;
+                const data_inicio = document.getElementById("editDataInicio").value;
+                const premio = document.getElementById("editPremio").value;
+
+                try {
+                    const response = await fetch(`http://localhost:30000/camp/${id}`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify({
+                            nome,
+                            data_inicio: data_inicio,
+                            premio,
+                        }),
+                    });
+
+                    if (response.ok) {
+                        alert("Campeonato atualizado com sucesso!");
+                        loadCampeonatos();
+                        bootstrap.Modal.getInstance(
+                            document.getElementById("editModal")
+                        ).hide();
+                    } else {
+                        alert("Erro ao atualizar o campeonatos.");
+                    }
+                } catch (error) {
+                    console.error("Erro ao atualizar o campeonatos:", error);
+                }
+            });
+
+        async function deleteCampeonato(id) {
+            if (!confirm("Tem certeza que deseja excluir este campeonato?")) return;
+
+            try {
+                const response = await fetch(`http://localhost:30000/camp/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    alert("Campeonato removido com sucesso!");
+                    loadTimes();
+                } else {
+                    alert("Erro ao remover o campeonato.");
+                }
+            } catch (error) {
+                console.error("Erro ao remover o campeonato:", error);
+            }
+        }
+
+        document
+            .getElementById("add-camp-form")
+            .addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                const nome = document.getElementById("nome").value;
+                const data_inicio = document.getElementById("data_inicio").value;
+                const premio = document.getElementById("premio").value;
+
+                try {
+                    const response = await fetch("http://localhost:30000/camp", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify({
+                            nome,
+                            data_inicio: data_inicio,
+                            premio,
+                        }),
+                    });
+
+                    if (response.ok) {
+                        alert("Campeonato adicionado com sucesso!");
+                        document.getElementById("add-camp-form").reset();
+                        loadTimes();
+                    } else {
+                        alert("Erro ao adicionar o campeonato.");
+                    }
+                } catch (error) {
+                    console.error("Erro ao adicionar o campeonato:", error);
+                }
+            });
+
+        function logout() {
+            localStorage.removeItem("token");
+            window.location.href = "/html/login.html";
+        }
+
+        window.onload = loadCampeonatos;
+    </script>
+</body>
+
+</html>
