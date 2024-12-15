@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';  // Usando import, já que é ESM
 
-const API_URL = 'http://localhost:3000/api/jogadores';
+const API_URL = 'http://localhost:30000/jog';
 
 // Função para obter todos os jogadores
 export const getJogadores = async (req, res) => {

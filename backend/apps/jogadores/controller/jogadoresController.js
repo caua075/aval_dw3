@@ -50,6 +50,9 @@ exports.insertJogador = async (req, res) => {
 exports.updateJogador = async (req, res) => {
   const { id } = req.params;
   const { nome, data_nascimento, salario, time_id } = req.body;
+  
+  console.log('Dados recebidos para atualização:', { id, nome, data_nascimento, salario, time_id });
+  
   try {
     const result = await pool.query(
       `UPDATE jogadores SET nome = $1, data_nascimento = $2, salario = $3, time_id = $4 WHERE id = $5 RETURNING *`,

@@ -1,46 +1,83 @@
 /* Define a altura mínima da tela para garantir que o conteúdo ocupe toda a altura */
 body {
-    min-height: 100vh;
-    display: flex;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Centraliza o título da página */
+h1 {
+  font-size: 2.5rem;
+  color: #4a4a4a;
+  text-align: center; /* Centraliza o título */
+  margin: 0;
+}
+
+/* Estilo para o botão de Logout e Voltar */
+.btn-danger,
+.btn-secondary {
+  margin: 0 5px; /* Espaçamento entre os botões */
+}
+
+.btn-danger {
+  background-color: #e53e3e;
+  border-color: #e53e3e;
+}
+
+.btn-danger:hover {
+  background-color: #c53030;
+  border-color: #9b2c2c;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* Adiciona espaçamento entre os campos no formulário */
+form .form-control {
+  margin-bottom: 1rem;
+}
+
+/* Centraliza o botão do formulário */
+form .btn-primary {
+  width: 100%; /* Faz o botão ocupar toda a largura */
+}
+
+/* Estilo da tabela */
+.table th,
+.table td {
+  vertical-align: middle; /* Alinha o conteúdo no centro vertical */
+  text-align: center; /* Centraliza o texto nas células */
+}
+
+.table thead th {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.table .btn {
+  margin: 0 2px; /* Adiciona espaçamento entre os botões */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
     flex-direction: column;
   }
-  
-  /* Garante que o conteúdo da página se centralize */
-  .container {
-    flex: 1;
+
+  .col-md-5,
+  .col-md-7 {
+    width: 100%; /* Alinha colunas como blocos verticais no mobile */
+    margin-bottom: 2rem;
   }
-  
-  /* Estilo customizado para o título */
-  h1 {
-    font-size: 2.5rem;
-    color: #4a4a4a;
+
+  form .btn-primary {
+    width: auto; /* Ajusta a largura do botão no mobile */
   }
-  
-  /* Estilo para os cartões */
-  .card {
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-  }
-  
-  /* Estilo do botão de logout */
-  .btn-danger {
-    background-color: #e53e3e;
-    border-color: #e53e3e;
-  }
-  
-  .btn-danger:hover {
-    background-color: #c53030;
-    border-color: #9b2c2c;
-  }
-  
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .card-text {
-    font-size: 1rem;
-    color: #6c757d;
-  }
-  
+}
