@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Time Campeonato</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/styleJogadores.css" />
+</head>
+
+<body>
+    <div class="container mt-4">
+        <header class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-center w-100">Cadastro de Times aos Campeonatos</h1>
+            <div class="d-flex gap-3">
+                <button onclick="window.location.href='/html/index.html'" class="btn btn-secondary">
+                    Voltar
+                </button>
+                <button onclick="logout()" class="btn btn-danger">Logout</button>
+            </div>
+        </header>
+
+        <div class="row">
+            <!-- Formulário de Cadastro -->
+            <div class="col-md-6">
+                <section class="mb-4">
+                    <h2 class="text-center">Adicionar Time Campeonato</h2>
+                    <form id="add-timecamp-form">
+                        <div class="mb-3">
+                            <label for="idtime" class="form-label">ID do Time</label>
+                            <input type="number" id="idtime" class="form-control" placeholder="ID do Time" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="idcamp" class="form-label">ID do Campeonato</label>
+                            <input type="number" id="idcamp" class="form-control" placeholder="ID do Campeonato"
+                                required />
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">
+                                Adicionar Time ao Campeonato
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+            <!-- Lista de Time Campeonato -->
+            <div class="col-md-6">
+                <section>
+                    <h2 class="text-center">Lista de Times e seus Campeonatos</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>ID do Time</th>
+                                    <th>ID do Campeonato</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="timecamp-table-body"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Modal para Edição -->
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Editar Time Campeonato</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="edit-timecamp-form">
+                            <input type="hidden" id="editId" />
+                            <div class="mb-3">
+                                <label for="editTime" class="form-label">ID do Time</label>
+                                <input type="number" id="editTime" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="editCampeonato" class="form-label">ID do Campeonato</label>
+                                <input type="number" id="editCampeonato" class="form-control" required />
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">
+                                    Salvar Alterações
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "/html/login.html";
+        }
+
+        async function loadTimecamp() {
+            try {
+                const response = await fetch("http://localhost:30000/time_camp", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const timecamps = await response.json();
+                    const tableBody = document.getElementById("timecamp-table-body");
+                    tableBody.innerHTML = "";
+
+                    timecamps.forEach((timecamp) => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = ` 
+                <td>${timecamp.id}</td>
+                <td>${timecamp.time_id}</td>
+                <td>${timecamp.campeonato_id}</td>
+                <td>
+                  <button class="btn btn-warning btn-sm" onclick="openEditModal(${timecamp.id
+                            }, ${timecamp.time_id}, ${timecamp.campeonato_id})">Editar</button>
+                  <button class="btn btn-danger btn-sm" onclick="deleteJogador(${timecamp.id
+                            })">Excluir</button>
+                </td>
+              `;
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    console.error("Erro ao carregar Times Campeonato.");
+                }
+            } catch (error) {
+                console.error("Erro ao conectar com o servidor:", error);
+            }
+        }
+
+        function openEditModal(id, time_id, campeonato_id) {
+            document.getElementById("editId").value = id;
+            document.getElementById("editTime").value = time_id;
+            document.getElementById("editCampeonato").value = campeonato_id;
+
+            const editModal = new bootstrap.Modal(
+                document.getElementById("editModal")
+            );
+            editModal.show();
+        }
+
+        document
+            .getElementById("edit-timecamp-form")
+            .addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                // Pegar os valores do formulário
+                const id = document.getElementById("editId").value;
+                const timeId = document.getElementById("editTime").value;
+                const campeonatoId = document.getElementById("editCampeonato").value;
+                
+
+                try {
+                    const response = await fetch(`http://localhost:30000/time_camp/${id}`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify({
+                            time_id: timeId,
+                            campeonato_id: campeonatoId,
+                        }),
+                    });
+
+                    if (response.ok) {
+                        alert("Time Campeonato atualizado com sucesso!");
+                        loadTimecamp();
+                        bootstrap.Modal.getInstance(
+                            document.getElementById("editModal")
+                        ).hide();
+                    } else {
+                        alert("Erro ao atualizar time campeonato.");
+                    }
+                } catch (error) {
+                    console.error("Erro ao atualizar time campeonato:", error);
+                }
+            });
+
+        async function deleteJogador(id) {
+            if (!confirm("Tem certeza que deseja excluir este time campeonato?")) return;
+
+            try {
+                const response = await fetch(`http://localhost:30000/time_camp/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    alert("Time Campeonato removido com sucesso!");
+                    loadTimecamp();
+                } else {
+                    alert("Erro ao remover time campeonato.");
+                }
+            } catch (error) {
+                console.error("Erro ao remover time campeonato:", error);
+            }
+        }
+
+        document
+            .getElementById("add-timecamp-form")
+            .addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                const timeId = document.getElementById("idtime").value;
+                const campeonatoId = document.getElementById("idcamp").value;
+
+
+                try {
+                    const response = await fetch("http://localhost:30000/time_camp", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify({
+                            time_id: timeId,
+                            campeonato_id: campeonatoId,
+                        }),
+                    });
+
+                    if (response.ok) {
+                        alert("Time Campeonato adicionado com sucesso!");
+                        document.getElementById("add-timecamp-form").reset();
+                        loadTimecamp();
+                    } else {
+                        alert("Erro ao adicionar time campeonato.");
+                    }
+                } catch (error) {
+                    console.error("Erro ao adicionar time campeonato:", error);
+                }
+            });
+
+        function logout() {
+            localStorage.removeItem("token");
+            window.location.href = "/html/login.html";
+        }
+
+        window.onload = loadTimecamp;
+    </script>
+</body>
+
+</html>
