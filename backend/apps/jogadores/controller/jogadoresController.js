@@ -4,12 +4,12 @@ const pool = require('../../../database/databaseConfig'); // Importa a configura
 exports.getJogadores = async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT * FROM jogadores WHERE removido = false ORDER BY id` // Consulta todos os jogadores com "removido = false".
+      `SELECT * FROM jogadores WHERE removido = false ORDER BY id` 
     );
-    res.status(200).json(result.rows); // Retorna os jogadores encontrados com status 200 (OK).
+    res.status(200).json(result.rows); 
   } catch (error) {
-    console.error('Erro ao buscar jogadores:', error); // Loga o erro no console para depuração.
-    res.status(500).json({ message: 'Erro ao buscar jogadores.' }); // Retorna um status 500 (erro interno do servidor).
+    console.error('Erro ao buscar jogadores:', error); 
+    res.status(500).json({ message: 'Erro ao buscar jogadores.' });
   }
 };
 
@@ -22,28 +22,27 @@ exports.getJogadorById = async (req, res) => {
       [id]
     );
     if (result.rowCount === 0) {
-      // Se nenhum jogador for encontrado, retorna status 404 (não encontrado).
       return res.status(404).json({ message: 'Jogador não encontrado.' });
     }
-    res.status(200).json(result.rows[0]); // Retorna o jogador encontrado com status 200 (OK).
+    res.status(200).json(result.rows[0]); 
   } catch (error) {
-    console.error('Erro ao buscar jogador:', error); // Loga o erro no console para depuração.
-    res.status(500).json({ message: 'Erro ao buscar jogador.' }); // Retorna um status 500 (erro interno do servidor).
+    console.error('Erro ao buscar jogador:', error); 
+    res.status(500).json({ message: 'Erro ao buscar jogador.' }); 
   }
 };
 
 // Insere um novo jogador no banco de dados.
 exports.insertJogador = async (req, res) => {
-  const { nome, data_nascimento, salario, time_id } = req.body; // Extrai os dados do corpo da requisição.
+  const { nome, data_nascimento, salario, time_id } = req.body;
   try {
     const result = await pool.query(
-      `INSERT INTO jogadores (nome, data_nascimento, salario, time_id) VALUES ($1, $2, $3, $4) RETURNING *`, // Insere os dados do jogador na tabela.
+      `INSERT INTO jogadores (nome, data_nascimento, salario, time_id) VALUES ($1, $2, $3, $4) RETURNING *`, 
       [nome, data_nascimento, salario, time_id]
     );
-    res.status(201).json(result.rows[0]); // Retorna o jogador recém-inserido com status 201 (criado).
+    res.status(201).json(result.rows[0]); 
   } catch (error) {
-    console.error('Erro ao inserir jogador:', error); // Loga o erro no console para depuração.
-    res.status(500).json({ message: 'Erro ao inserir jogador.' }); // Retorna um status 500 (erro interno do servidor).
+    console.error('Erro ao inserir jogador:', error); 
+    res.status(500).json({ message: 'Erro ao inserir jogador.' }); 
   }
 };
 
